@@ -10,8 +10,8 @@ interface NavLinkItem {
 }
 
 const navLinks: NavLinkItem[] = [
-  { path: "/", label: "Client Site" },
-  { path: "/products", label: "Server Site" },
+  { path: "/", label: "Server Site" },
+  { path: "/products", label: "Client Site" },
 ];
 
 const Header: React.FC = () => {
