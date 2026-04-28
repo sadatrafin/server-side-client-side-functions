@@ -1,4 +1,5 @@
-import ProductCard from "@/components/Card";
+import Link from 'next/link'
+import ProductCard from '@/components/Card'
 
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ page?: string; category?: string; q?: string }> }) {
@@ -60,9 +61,9 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
               Search
             </button>
             {(q || category) && (
-              <a href="?" className="px-6 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-lg transition font-medium text-center">
+              <Link href="?" className="px-6 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-lg transition font-medium text-center">
                 Clear
-              </a>
+              </Link>
             )}
           </div>
         </form>
@@ -72,17 +73,17 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
           {/* Category Sidebar */}
           <div className="w-full lg:w-40">
             <div className="flex flex-row lg:flex-col gap-2 lg:gap-3 overflow-x-auto lg:overflow-visible">
-              <a href="?" className={`px-4 py-2 rounded whitespace-nowrap text-sm transition ${!category ? 'bg-black text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}>
+              <Link href="?" className={`px-4 py-2 rounded whitespace-nowrap text-sm transition ${!category ? 'bg-black text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}>
                 All
-              </a>
+              </Link>
               {categories.map((cat: string) => (
-                <a
+                <Link
                   key={cat}
                   href={`?category=${cat}`}
                   className={`px-4 py-2 rounded whitespace-nowrap text-sm capitalize transition ${category === cat ? 'bg-black text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
                 >
                   {cat}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -102,29 +103,29 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
 
                 <div className="flex justify-center items-center gap-4 md:gap-6 mt-12 flex-wrap">
                   {currentPage > 1 ? (
-                    <a href={`?page=${currentPage - 1}${category ? `&category=${category}` : ''}${q ? `&q=${encodeURIComponent(q)}` : ''}`} className="text-gray-600 hover:text-black transition">
+                    <Link href={`?page=${currentPage - 1}${category ? `&category=${category}` : ''}${q ? `&q=${encodeURIComponent(q)}` : ''}`} className="text-gray-600 hover:text-black transition">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 19l-7-7 7-7" /></svg>
-                    </a>
+                    </Link>
                   ) : (
                     <div className="w-5" />
                   )}
 
                   <div className="flex gap-1 md:gap-2 flex-wrap justify-center">
                     {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                      <a
+                      <Link
                         key={p}
                         href={`?page=${p}${category ? `&category=${category}` : ''}${q ? `&q=${encodeURIComponent(q)}` : ''}`}
                         className={p === currentPage ? 'w-8 h-8 flex items-center justify-center bg-gray-200 text-black font-bold rounded-full border border-gray-400 text-sm' : 'w-8 h-8 flex items-center justify-center text-gray-700 hover:text-black transition text-sm'}
                       >
                         {p}
-                      </a>
+                      </Link>
                     ))}
                   </div>
 
                   {currentPage < totalPages ? (
-                    <a href={`?page=${currentPage + 1}${category ? `&category=${category}` : ''}${q ? `&q=${encodeURIComponent(q)}` : ''}`} className="text-gray-600 hover:text-black transition">
+                    <Link href={`?page=${currentPage + 1}${category ? `&category=${category}` : ''}${q ? `&q=${encodeURIComponent(q)}` : ''}`} className="text-gray-600 hover:text-black transition">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 5l7 7-7 7" /></svg>
-                    </a>
+                    </Link>
                   ) : (
                     <div className="w-5" />
                   )}
