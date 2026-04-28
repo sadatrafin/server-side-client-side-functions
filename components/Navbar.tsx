@@ -18,19 +18,19 @@ const Header: React.FC = () => {
   const pathname = usePathname();
 
   return (
-    <header className="py-3 bg-white sticky top-0 left-0 w-full z-50 shadow">
-      <nav className="flex justify-center items-center">
-        <ul className="flex gap-5 p-2">
+    <header className="py-4 bg-white sticky top-0 left-0 w-full z-50 shadow">
+      <nav className="max-w-7xl mx-auto px-4 md:px-6 flex justify-center">
+        <ul className="flex gap-4 md:gap-6">
           {navLinks.map((link) => {
             const isActive = pathname === link.path;
             return (
               <li key={link.path}>
                 <Link
                   href={link.path}
-                  className={`px-5 py-2.5 rounded-md text-sm font-medium transition-all duration-300 ${
+                  className={`px-4 py-2 rounded text-sm font-medium transition ${
                     isActive
-                      ? "bg-blue-600 text-white shadow-md"
-                      : "text-slate-500 hover:text-blue-600 hover:bg-blue-50"
+                      ? "bg-black text-white"
+                      : "text-gray-600 hover:text-black hover:bg-gray-100"
                   }`}
                 >
                   {link.label}

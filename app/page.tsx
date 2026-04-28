@@ -1,4 +1,5 @@
-import ProductCard from '@/components/Card'
+import ProductCard from "@/components/Card";
+
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ page?: string; category?: string; q?: string }> }) {
 
@@ -42,11 +43,11 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
         {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-black mb-2">Products</h1>
-          <p className="text-gray-700 text-sm md:text-base">{products.length} items found</p>
+          <p className="text-gray-700 text-sm md:text-base">{products.length} products found</p>
         </div>
 
         {/* Search Bar */}
-        <form action="" method="get" className="mb-8">
+        <form action="" method="get" className="mb-8 max-w-2xl mx-auto">
           <div className="flex flex-col sm:flex-row gap-3">
             <input
               type="text"
@@ -59,7 +60,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
               Search
             </button>
             {(q || category) && (
-              <a href="?" className="px-6 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-lg transition font-medium text-center cursor-pointer">
+              <a href="?" className="px-6 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-lg transition font-medium text-center">
                 Clear
               </a>
             )}
@@ -71,14 +72,14 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
           {/* Category Sidebar */}
           <div className="w-full lg:w-40">
             <div className="flex flex-row lg:flex-col gap-2 lg:gap-3 overflow-x-auto lg:overflow-visible">
-              <a href="?" className={`px-6 py-2 rounded-lg whitespace-nowrap transition ${!category ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}>
+              <a href="?" className={`px-4 py-2 rounded whitespace-nowrap text-sm transition ${!category ? 'bg-black text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}>
                 All
               </a>
               {categories.map((cat: string) => (
                 <a
                   key={cat}
                   href={`?category=${cat}`}
-                  className={`px-6 py-2 rounded-lg whitespace-nowrap text-sm capitalize transition ${category === cat ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
+                  className={`px-4 py-2 rounded whitespace-nowrap text-sm capitalize transition ${category === cat ? 'bg-black text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
                 >
                   {cat}
                 </a>
