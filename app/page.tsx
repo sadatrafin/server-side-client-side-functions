@@ -1,3 +1,5 @@
+import ProductCard from '@/components/Card'
+
 export default async function Page({ searchParams }: { searchParams: Promise<{ page?: string; category?: string; q?: string }> }) {
 
   const { page, category, q } = await searchParams
@@ -53,11 +55,11 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
               defaultValue={q || ''}
               className="flex-1 px-4 py-2 border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
-            <button type="submit" className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-medium">
+            <button type="submit" className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-medium cursor-pointer">
               Search
             </button>
             {(q || category) && (
-              <a href="?" className="px-6 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-lg transition font-medium text-center">
+              <a href="?" className="px-6 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-lg transition font-medium text-center cursor-pointer">
                 Clear
               </a>
             )}
@@ -69,14 +71,14 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
           {/* Category Sidebar */}
           <div className="w-full lg:w-40">
             <div className="flex flex-row lg:flex-col gap-2 lg:gap-3 overflow-x-auto lg:overflow-visible">
-              <a href="?" className={`px-4 py-2 rounded whitespace-nowrap text-sm transition ${!category ? 'bg-black text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}>
+              <a href="?" className={`px-6 py-2 rounded-lg whitespace-nowrap transition ${!category ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}>
                 All
               </a>
               {categories.map((cat: string) => (
                 <a
                   key={cat}
                   href={`?category=${cat}`}
-                  className={`px-4 py-2 rounded whitespace-nowrap text-sm capitalize transition ${category === cat ? 'bg-black text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
+                  className={`px-6 py-2 rounded-lg whitespace-nowrap text-sm capitalize transition ${category === cat ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
                 >
                   {cat}
                 </a>
@@ -90,37 +92,11 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                   {products.map((product: Product) => (
-                    <div key={product.id} className="flex flex-col bg-white rounded-lg shadow hover:shadow-lg transition">
-                      {/* Product Image */}
-                      <div className="relative bg-gray-100 aspect-square overflow-hidden rounded-t-lg">
-                        <img src={product.thumbnail} alt={product.title} className="w-full h-full object-contain p-3" />
-                        <div className="absolute top-2 left-2 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-semibold text-gray-700 uppercase">
-                          {product.category}
-                        </div>
-                      </div>
 
-
-                      <div className="flex flex-col grow p-4">
-                        <h2 className="font-semibold text-gray-900 line-clamp-2 mb-2 text-sm md:text-base">{product.title}</h2>
-                        <p className="text-gray-600 line-clamp-2 mb-4 text-xs md:text-sm">{product.description}</p>
-
-                        {/* Price & Rating */}
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="text-lg md:text-xl font-bold text-gray-900">${product.price}</span>
-                          <div className="flex items-center gap-1 text-yellow-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
-                            <span className="text-xs md:text-sm font-medium">{product.rating}</span>
-                          </div>
-                        </div>
-
-                        <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded transition font-medium text-sm">
-                          View
-                        </button>
-                      </div>
-                    </div>
+                    <ProductCard key={product.id} product={product} />
+                    
                   ))}
                 </div>
-
 
 
                 <div className="flex justify-center items-center gap-4 md:gap-6 mt-12 flex-wrap">

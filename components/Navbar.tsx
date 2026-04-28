@@ -29,8 +29,8 @@ const Header: React.FC = () => {
                   href={link.path}
                   className={`px-5 py-2.5 rounded-md text-sm font-medium transition-all duration-300 ${
                     isActive
-                      ? "bg-indigo-600 text-white shadow-md"
-                      : "text-slate-500 hover:text-indigo-600 hover:bg-indigo-50"
+                      ? "bg-blue-600 text-white shadow-md"
+                      : "text-slate-500 hover:text-blue-600 hover:bg-blue-50"
                   }`}
                 >
                   {link.label}
