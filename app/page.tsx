@@ -1,16 +1,16 @@
 export default async function Page({ searchParams }: { searchParams: Promise<{ page?: string; category?: string; q?: string }> }) {
-  // Extract URL parameters
+
   const { page, category, q } = await searchParams
   const limit = 15
   const currentPage = Math.max(1, parseInt(page || '1', 10))
   const skip = (currentPage - 1) * limit
 
-  // Fetch categories
+
   const categoriesRes = await fetch('https://dummyjson.com/products/categories', { cache: 'no-store' })
   const categoriesData = await categoriesRes.json()
   const categories = Array.isArray(categoriesData) ? categoriesData.map((cat: any) => typeof cat === 'string' ? cat : cat.slug) : []
 
-  // Build API URL with search or category filter
+
   let url = ''
   if (q) {
     url = `https://dummyjson.com/products/search?q=${encodeURIComponent(q)}&limit=${limit}&skip=${skip}`
@@ -99,7 +99,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
                         </div>
                       </div>
 
-                      {/* Product Details */}
+
                       <div className="flex flex-col grow p-4">
                         <h2 className="font-semibold text-gray-900 line-clamp-2 mb-2 text-sm md:text-base">{product.title}</h2>
                         <p className="text-gray-600 line-clamp-2 mb-4 text-xs md:text-sm">{product.description}</p>
@@ -121,7 +121,8 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
                   ))}
                 </div>
 
-                {/* Pagination */}
+
+
                 <div className="flex justify-center items-center gap-4 md:gap-6 mt-12 flex-wrap">
                   {currentPage > 1 ? (
                     <a href={`?page=${currentPage - 1}${category ? `&category=${category}` : ''}${q ? `&q=${encodeURIComponent(q)}` : ''}`} className="text-gray-600 hover:text-black transition">
