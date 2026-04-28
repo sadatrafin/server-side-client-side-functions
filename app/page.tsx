@@ -4,7 +4,7 @@ import ProductCard from "@/components/Card";
 export default async function Page({ searchParams }: { searchParams: Promise<{ page?: string; category?: string; q?: string }> }) {
 
   const { page, category, q } = await searchParams
-  const limit = 15
+  const limit = 9
   const currentPage = Math.max(1, parseInt(page || '1', 10))
   const skip = (currentPage - 1) * limit
 
@@ -43,7 +43,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
         {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-black mb-2">Products</h1>
-          <p className="text-gray-700 text-sm md:text-base">{products.length} products found</p>
+          <p className="text-gray-700 text-sm md:text-base">{total} items found</p>
         </div>
 
         {/* Search Bar */}
