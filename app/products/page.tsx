@@ -126,9 +126,8 @@ export default function Page() {
                 setSelectedCategory('')
                 setCurrentPage(1)
               }}
-              className={`px-4 py-2 rounded whitespace-nowrap text-sm transition ${
-                !selectedCategory ? 'bg-black text-white' : 'bg-white text-gray-700 hover:bg-gray-100'
-              }`}
+              className={`px-4 py-2 rounded whitespace-nowrap text-sm transition ${!selectedCategory ? 'bg-black text-white' : 'bg-white text-gray-700 hover:bg-gray-100'
+                }`}
             >
               All
             </button>
@@ -139,9 +138,8 @@ export default function Page() {
                   setSelectedCategory(cat)
                   setCurrentPage(1)
                 }}
-                className={`px-4 py-2 rounded whitespace-nowrap text-sm capitalize transition ${
-                  selectedCategory === cat ? 'bg-black text-white' : 'bg-white text-gray-700 hover:bg-gray-100'
-                }`}
+                className={`px-4 py-2 rounded whitespace-nowrap text-sm capitalize transition ${selectedCategory === cat ? 'bg-black text-white' : 'bg-white text-gray-700 hover:bg-gray-100'
+                  }`}
               >
                 {cat}
               </button>

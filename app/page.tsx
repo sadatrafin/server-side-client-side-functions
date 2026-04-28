@@ -96,7 +96,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
                   {products.map((product: Product) => (
 
                     <ProductCard key={product.id} product={product} />
-                    
+
                   ))}
                 </div>
 
